@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagens de Parabéns</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+
+        .message {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            background: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer {
+            font-size: 1.2rem;
+            padding: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-top: 2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            position: absolute;
+            animation: confetti 5s ease-in-out infinite;
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message-box">
+            <div id="congratsMessage" class="message">
+                Clique no botão para ver uma mensagem de parabéns!
+            </div>
+            <button onclick="showRandomMessage()">Aperte aqui e rebeba meus parabéns</button>
+        </div>
+    </div>
+    
+    <div class="footer">
+        DE SEU MELHOR IRMÃO ZAAC O MAIS LINDO DE TODOS ❤️
+    </div>
+
+    <script>
+        const messages = [
+            "Parabéns! Você é incrível e merece todo o sucesso do mundo! 🌟",
+            "Felicitações! Que seu dia seja tão especial quanto você! 🎉",
+            "Parabéns! Continue brilhando e inspirando a todos ao seu redor! ✨",
+            "Feliz dia! Você é um presente para todos que te conhecem! 🎁",
+            "Parabéns! Seu sorriso ilumina o mundo! 🌞",
+            "Felicitações! Você é capaz de realizar todos os seus sonhos! 🌈",
+            "Parabéns! Sua força e determinação são admiráveis! 💪",
+            "Feliz momento! Você merece todas as coisas boas da vida! 🎊",
+            "Parabéns! Seu sucesso é resultado do seu esforço! 🏆",
+            "Felicitações! Que a felicidade sempre faça parte da sua vida! 🎈",
+            "Parabéns! Que cada momento seja uma nova oportunidade de brilhar! 🌠",
+            "Felicitações! Você é um exemplo de perseverança e dedicação! 🏃‍♂️",
+            "Parabéns! Sua energia positiva contagia todos ao seu redor! ⚡",
+            "Que dia especial! Você merece todas as bênçãos do universo! 🙏",
+            "Parabéns! Seu coração generoso faz do mundo um lugar melhor! 💝",
+            "Feliz dia! Que seus sonhos te levem cada vez mais alto! 🚀",
+            "Parabéns! Você é uma fonte de inspiração para todos nós! 💫",
+            "Felicitações! Sua jornada é uma história de sucesso! 📚",
+            "Parabéns! Que a alegria nunca saia do seu caminho! 🌈",
+            "Que momento especial! Você é uma pessoa extraordinária! ⭐",
+            "Parabéns! Seu talento e dedicação são admiráveis! 🎯",
+            "Felicitações! Você torna o mundo mais bonito com sua presença! 🌺",
+            "Parabéns! Continue espalhando amor por onde passa! 💖",
+            "Que dia incrível! Você é uma pessoa simplesmente maravilhosa! 🎊",
+            "Parabéns! Seu potencial não tem limites! 🌟",
+            "Felicitações! Que cada dia seja uma nova conquista! 🏆",
+            "Parabéns! Você é uma pessoa única e especial! 💎",
+            "Que momento mágico! Seu brilho é incomparável! ✨",
+            "Parabéns! Que a felicidade seja sua companheira constante! 🍀",
+            "Felicitações! Você é um presente para este mundo! 🎁",
+            "Parabéns! Sua determinação move montanhas! 🗻",
+            "Que dia especial! Você merece todo o amor do mundo! 💗",
+            "Parabéns! Continue sendo essa pessoa incrível! 🌟",
+            "Felicitações! Seu sorriso ilumina nossos dias! 🌞",
+            "Parabéns! Que seus sonhos ganhem asas! 🦋",
+            "Que momento único! Você é simplesmente sensacional! 🎯",
+            "Parabéns! Sua luz própria brilha intensamente! 💫",
+            "Felicitações! Você faz a diferença na vida de todos! 🌈",
+            "Parabéns! Que sua vida seja repleta de momentos mágicos! ✨",
+            "Que dia maravilhoso! Você é um verdadeiro tesouro! 💎",
+        ];
+
+        function showRandomMessage() {
+            const messageElement = document.getElementById('congratsMessage');
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            messageElement.textContent = messages[randomIndex];
+            createConfetti();
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>
