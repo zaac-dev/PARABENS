@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagens de Parabéns</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+
+        .message {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            background: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer {
+            font-size: 1.2rem;
+            padding: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-top: 2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            position: absolute;
+            animation: confetti 5s ease-in-out infinite;
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message-box">
+            <div id="congratsMessage" class="message">
+                Clique no botão para receber meus parabéns!
+            </div>
+            <button onclick="showRandomMessage()">Aperte aqui e rebeba meus parabéns</button>
+        </div>
+    </div>
+    
+    <div class="footer">
+        DE SEU MELHOR IRMÃO ZAAC O MAIS LINDO DE TODOS ❤️
+    </div>
+
+    <script>
+        const messages = [
+            "Parabéns! Seu potencial não tem limites! 🌟",
+            "Parabéns, irmã! Lembre-se: você não fica mais experiente, apenas mais velha… e mais perto da aposentadoria! 💪",
+            "Feliz aniversário! Se a vida te der limões, peça um bolo de chocolate e me de a metade! 🎂",
+            "Felicitações! Que cada dia seja uma nova conquista! 🎉",
+            "Irmã, você não está envelhecendo, está apenas se tornando uma pessoa mais velha! 👴",
+            "Parabéns! Você é como um vinho: quanto mais velho, mais caro e difícil de encontrar! 🍷",
+            "Parabéns! Você é uma pessoa única e especial! 🌟",
+            "Feliz aniversário! Que seu dia seja repleto de sorrisos e de bolos… porque a única coisa que envelhece é voce e não é o bolo! 🎂",
+            "Irmã, comemore! Hoje você pode ser a rainha do sofá… só não esqueça de levantar para pegar o bolo! 🎂",
+            "Parabéns! Se os cabelos brancos são sinal de sabedoria, você deve ser uma gigante da sabedoria! 🌟",
+            "Que momento mágico! Seu brilho é incomparável! ✨",
+            "Feliz aniversário! Lembre-se: você é tão jovem quanto se sente… então continue se sentindo como uma criança travessa! 👼",
+            "Irmã, não se preocupe com a idade. O que importa é que você ainda pode me darb a metade do bolo! 🎂",
+            "Felicitações! Você é um presente para este mundo! 🌟",
+            "Parabéns! Não sou um gênio em matemática, mas tenho certeza de que você já completou várias voltas ao sol e… ainda não conseguiu aprender a cozinhar! 🍳",
+            "Feliz aniversário! Que sua vida seja tão divertida quanto suas tentativas de cantar no chuveiro! 🎤",
+            "Irmã, você é como aqueles aplicativos que nunca atualizam: continua a mesma coisa, só que mais cheia de bugs! 🐞",
+            "Feliz aniversário! Só lembre-se: a idade é apenas um número… e, no seu caso, é um número bem alto! 🌟",
+            "Irmã, você é como um meme: algumas pessoas amam, outras não entendem, mas todos riem!! 🤣",
+            "Parabéns! A cada ano que passa, você fica mais parecida com a nossa mãe… e isso é motivo suficiente para festejar! 🎉",
+            "Feliz aniversário! Vamos brindar à sua nova idade: mais um motivo para você continuar a ser a nossa comediante favorita! 😂",
+            "Parabéns! Dizer que você é jovem é como tentar convencer um gato a tomar banho: totalmente impossível! 😸",
+            "Feliz aniversário! Hoje você pode fazer tudo o que quiser… mas não se esqueça de usar o protetor solar, senão vai ficar ainda mais velha!! 🌟",
+            "Feliz aniversário! Que todos os seus desejos se realizem… exceto aqueles que envolvem a idade!! 🌟",
+            "Feliz aniversário, mana! Lembre-se: a idade é apenas um número… um número que eu vou te lembrar todo dia! 🌟",
+            "Feliz aniversário! Para comemorar, vou deixar você escolher: bolo ou eu te lembrar de quantas velas teremos que colocar no próximo ano! 🎂",
+            "Parabéns, mana! Hoje é o dia em que todo mundo finge que você não está ficando velha. Aproveite! 🌟",
+            "Parabéns, mana! Se você ficar feliz, eu fico. Se você ficar triste, eu fico. Então, trate de ficar rica logo! 🌟",
+            "Mas já é seu aniversário de novo? Tô ficando velha mesmo, o tempo tá passando voando! 🎊",
+    
+        ];
+
+        function showRandomMessage() {
+            const messageElement = document.getElementById('congratsMessage');
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            messageElement.textContent = messages[randomIndex];
+            createConfetti();
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>
